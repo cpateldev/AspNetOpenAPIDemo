@@ -1,0 +1,6 @@
+@AspNet.SwaggerUIDemo_HostAddress = http://localhost:5023
+
+GET {{AspNet.SwaggerUIDemo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

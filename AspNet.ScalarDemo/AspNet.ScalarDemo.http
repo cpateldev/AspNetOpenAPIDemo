@@ -1,0 +1,6 @@
+@AspNet.ScalarDemo_HostAddress = http://localhost:5080
+
+GET {{AspNet.ScalarDemo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

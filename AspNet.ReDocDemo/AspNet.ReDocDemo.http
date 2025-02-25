@@ -1,0 +1,6 @@
+@AspNet.ReDocDemo_HostAddress = http://localhost:5205
+
+GET {{AspNet.ReDocDemo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
