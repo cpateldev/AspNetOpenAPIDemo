@@ -45,20 +45,20 @@ namespace AspNetOpenAPIDemo
 
             PopulateTodoDB(app.Services);
 
-            app.MapGet("/todoitems", async (TodoDb db) =>
+            app.MapGet("api/todoitems", async (TodoDb db) =>
                 await db.Todos.ToListAsync())
                 .WithOpenApi();
 
-            app.MapGet("/todoitems/complete", async (TodoDb db) =>
+            app.MapGet("api/todoitems/complete", async (TodoDb db) =>
                 await db.Todos.Where(t => t.IsComplete).ToListAsync());
 
-            app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
+            app.MapGet("api/todoitems/{id}", async (int id, TodoDb db) =>
                 await db.Todos.FindAsync(id)
                     is Todo todo
                         ? Results.Ok(todo)
                         : Results.NotFound());
 
-            app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
+            app.MapPost("api/todoitems", async (Todo todo, TodoDb db) =>
             {
                 db.Todos.Add(todo);
                 await db.SaveChangesAsync();
@@ -66,7 +66,7 @@ namespace AspNetOpenAPIDemo
                 return Results.Created($"/todoitems/{todo.Id}", todo);
             });
 
-            app.MapPatch("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
+            app.MapPatch("api/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
             {
                 var todo = await db.Todos.FindAsync(id);
 
@@ -80,7 +80,7 @@ namespace AspNetOpenAPIDemo
                 return Results.NoContent();
             });
 
-            app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
+            app.MapPut("api/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
             {
                 var todo = await db.Todos.FindAsync(id);
 
@@ -95,7 +95,7 @@ namespace AspNetOpenAPIDemo
             });
 
             // POST /todoitems/batch
-            app.MapPost("/todoitems/batch", async (Todo[] todos, TodoDb db) =>
+            app.MapPost("api/todoitems/batch", async (Todo[] todos, TodoDb db) =>
             {
                 await db.Todos.AddRangeAsync(todos);
                 await db.SaveChangesAsync();
@@ -103,7 +103,7 @@ namespace AspNetOpenAPIDemo
                 return Results.Ok(todos);
             });
 
-            app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
+            app.MapDelete("api/todoitems/{id}", async (int id, TodoDb db) =>
             {
                 if (await db.Todos.FindAsync(id) is Todo todo)
                 {

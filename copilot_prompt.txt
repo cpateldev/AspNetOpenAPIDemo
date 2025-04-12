@@ -1,0 +1,12 @@
+Create detailed documentation about this ASP.Net minimal api project to showcase SwaggerUI features with following details
+
+Project badges showing .NET 9.0, Windows platform and OpenAPI 3.0.1 version
+Detailed overview and features
+Complete NuGet package configuration along with Nuget commands
+Database information including the pre-populated data setup
+Full API endpoint documentation with HTTP methods and their status codes
+Launch settings for both HTTP and HTTPS
+Add project structure with file descriptions and file type icons for this project
+Model definitions for both Todo and TodoItemDTO
+Getting started guide
+Development environment requirements
