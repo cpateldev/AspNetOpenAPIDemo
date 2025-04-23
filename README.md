@@ -39,12 +39,14 @@ Follow these steps to set up the project:
 
 ### Solution Overview
 The solution consists of the following projects:
-- **[AspNet.NSwagDemo](/AspNet.NSwagDemo/README.md)**: Showcases NSwag Studio integration for API documentation and client generation.
-- **[AspNet.ReDocDemo](/AspNet.ReDocDemo/README.md)**: Demonstrates ReDoc integration for API documentation.
-- **[AspNet.ScalarDemo](/AspNet.ScalarDemo/README.md)**: Implements Scalar for advanced API documentation.
-- **[AspNet.SwashbuckleDemo](/AspNet.SwashbuckleDemo/README.md)**: Uses Swashbuckle for Swagger UI integration.
-- **[AspNet.SwaggerUIDemo](/AspNet.SwaggerUIDemo/README.md)**: Implements native Swagger UI for API documentation.
 - **[AspNetOpenAPIDemo](/AspNetOpenAPIDemo/README.md)**: Basic OpenAPI implementation.
+- **[AspNet.SwaggerUIDemo](/AspNet.SwaggerUIDemo/README.md)**: Implements native Swagger UI for API documentation.
+- **[AspNet.SwashbuckleDemo](/AspNet.SwashbuckleDemo/README.md)**: Uses Swashbuckle for Swagger UI integration.
+- **[AspNet.NSwagDemo](/AspNet.NSwagDemo/README.md)**: Showcases NSwag Studio integration for API documentation and client generation.
+- **[AspNet.ScalarDemo](/AspNet.ScalarDemo/README.md)**: Implements Scalar for advanced API documentation.
+- **[AspNet.ReDocDemo](/AspNet.ReDocDemo/README.md)**: Demonstrates ReDoc integration for API documentation.
+
+
 
 ### Common Components
 - **`TodoDb`**: In-memory database for managing Todo items.
