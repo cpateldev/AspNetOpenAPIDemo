@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.35821.62
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetOpenAPIDemo", "AspNetOpenAPIDemo\AspNetOpenAPIDemo.csproj", "{507679FC-F62B-49AF-B48E-FF039BB03969}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNet.OpenAPIDemo", "AspNet.OpenAPIDemo\AspNet.OpenAPIDemo.csproj", "{507679FC-F62B-49AF-B48E-FF039BB03969}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNet.SwaggerUIDemo", "AspNet.SwaggerUIDemo\AspNet.SwaggerUIDemo.csproj", "{5B3DDFCF-22F7-4C14-A333-F885EFEFB364}"
 EndProject
