@@ -1,17 +1,15 @@
-# ASP.NET Core Minimal API with Swagger Demo
-
-A minimal API demo project showcasing Todo management with OpenAPI (Swagger) documentation using ASP.NET Core 9.0.
+# ASP.NET Core ReDoc API Documentation Demo
 
 ## Table of Contents
-- [Project Overview](#project-overview)
+- [Overview](#overview)
 - [Platforms](#platforms)
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [NuGet Package Configuration](#nuget-package-configuration)
-    - [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore (9.0.2)](#microsoftaspnetcorediagnosticsentityframeworkcore-902)
-    - [Microsoft.AspNetCore.OpenApi (9.0.2)](#microsoftaspnetcoreopenapi-902)
-    - [Microsoft.EntityFrameworkCore.InMemory (9.0.2)](#microsoftentityframeworkcoreinmemory-902)
-    - [Swashbuckle.AspNetCore (7.2.0)](#swashbuckleaspnetcore-720)
+    - [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](#microsoftaspnetcorediagnosticsentityframeworkcore-902)
+    - [Microsoft.AspNetCore.OpenApi](#microsoftaspnetcoreopenapi-902)
+    - [Microsoft.EntityFrameworkCore.InMemory](#microsoftentityframeworkcoreinmemory-902)
+    - [Swashbuckle.AspNetCore.ReDoc](#swashbuckleaspnetcoreredoc-650)
 - [Database](#database)
 - [Minimal API Endpoints](#minimal-api-endpoints)
 - [OpenAPI Documentation](#openapi-documentation)
@@ -22,13 +20,11 @@ A minimal API demo project showcasing Todo management with OpenAPI (Swagger) doc
 - [Models](#models)
     - [Todo Entity](#todo-entity)
     - [TodoItemDTO](#todoitemdto)
-- [Getting Started](#getting-started-1)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Project Overview
-
-This project demonstrates building a RESTful API using ASP.NET Core Minimal APIs with Entity Framework Core InMemory database and Swagger/OpenAPI documentation.
+## Overview
+This project demonstrates the implementation of ReDoc documentation for ASP.NET Core Web API. ReDoc provides a responsive, customizable, and user-friendly API documentation interface.
 
 ## Platforms
 
@@ -37,36 +33,44 @@ This project demonstrates building a RESTful API using ASP.NET Core Minimal APIs
 ![OpenAPI](https://img.shields.io/badge/OpenAPI-3.0.1-darkgreen?style=for-the-badge)    
 
 ## Features
-
-- Minimal API architecture
+- OpenAPI documentation with NSwag
+- Minimal API endpoints
+- RESTful API design
+- Swagger UI integration
+- API versioning
+- Automatic documentation generation
 - Entity Framework Core with InMemory database
-- OpenAPI/Swagger documentation
 - CRUD operations for Todo items
 - Batch operations support
 - DTO pattern implementation
 
 ## Getting Started
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-repo/AspNetOpenAPIDemo.git
-    cd AspNetOpenAPIDemo
-    ```
+  ```bash
+  git clone https://github.com/your-repo/AspNet.ScalarDemo.git
+  cd AspNet.ScalarDemo
+  ```
 
-2. Restore dependencies:
-    ```bash
-    dotnet restore
-    ```
+2. Build the project:
+  ```bash
+  dotnet build
+  ```
 
 3. Run the application:
-    ```bash
-    dotnet run
-    ```
+  ```bash
+  dotnet run
+  ```
 
 4. Access the API:
-    - Swagger UI: `http://localhost:5071/swagger` or `https://localhost:7041/swagger`
-    - API Endpoints: 
-      - HTTP: `http://localhost:5071/todoitems`
-      - HTTPS: `https://localhost:7041/todoitems`
+  - ReDoc UI: `https://localhost:7266/api-docs` or `http://localhost:5074/api-docs`  
+  - API Base URL: 
+    - HTTPS: `https://localhost:7266/todoitems`
+    - HTTP: `http://localhost:5074/todoitems`
+
+The documentation interfaces are:
+- ReDoc UI: A clean, responsive, three-panel design documentation
+- Swagger UI: Interactive API testing and documentation interface
+
 
 ## NuGet Package Configuration
 The following NuGet packages are required for this project:
@@ -92,11 +96,11 @@ dotnet add package Microsoft.AspNetCore.OpenApi --version 9.0.2
 dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 9.0.2
 ```
 
-### Swashbuckle.AspNetCore (7.2.0)
-- Adds Swagger tools for documenting APIs built on ASP.NET Core
-- Includes Swagger UI for API testing and exploration
+### Swashbuckle.AspNetCore.ReDoc (6.5.0)
+- Adds ReDoc documentation UI for ASP.NET Core APIs
+- Provides a responsive, customizable API reference documentation
 ```powershell
-dotnet add package Swashbuckle.AspNetCore --version 7.2.0
+dotnet add package Swashbuckle.AspNetCore.ReDoc --version 6.5.0
 ```
 
 ```xml
@@ -104,7 +108,7 @@ dotnet add package Swashbuckle.AspNetCore --version 7.2.0
   <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.2" />
   <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
   <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.2" />
-  <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+  <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="6.5.0" />
 </ItemGroup>
 ```
 ## Database
@@ -113,19 +117,19 @@ The application uses Entity Framework Core with an InMemory database provider, p
 
 ## Minimal API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/todoitems` | Get all todo items |
-| GET | `/todoitems/complete` | Get completed todo items |
-| GET | `/todoitems/{id}` | Get a specific todo item |
-| POST | `/todoitems` | Create a new todo item |
-| PUT | `/todoitems/{id}` | Update an existing todo item |
-| PATCH | `/todoitems/{id}` | Partially update a todo item |
-| DELETE | `/todoitems/{id}` | Delete a todo item |
-| POST | `/todoitems/batch` | Create multiple todo items |
+| Method | Endpoint | Description | Status Codes |
+|--------|----------|-------------|--------------|
+| GET | `/todoitems` | Get all todo items | 200 |
+| GET | `/todoitems/complete` | Get completed todo items | 200 |
+| GET | `/todoitems/{id}` | Get a specific todo item | 200, 404 |
+| POST | `/todoitems` | Create a new todo item | 201 |
+| PATCH | `/todoitems/{id}` | Update todo item name | 204, 404 |
+| PUT | `/todoitems/{id}` | Update entire todo item | 204, 404 |
+| POST | `/todoitems/batch` | Create multiple todo items | 200 |
+| DELETE | `/todoitems/{id}` | Delete a todo item | 200, 404 |
 
 ## OpenAPI Documentation
-The project uses OpenAPI (Swagger) to document and test its APIs. Swagger UI is automatically generated and available at `http://localhost:<port>/swagger`. The following endpoints are documented:
+The project uses OpenAPI (Swagger) to document and test its APIs. Swagger UI is automatically generated and available at `http://localhost:<port>/api-docs`. The following endpoints are documented:
 
 ### Todo API
 - **GET /api/todo**  
@@ -179,13 +183,13 @@ The `launchSettings.json` file in the `Properties` folder configures how the app
 The file contains two primary launch profiles:
 
 - **HTTP Profile**
-    - Runs on port 5071
+    - Runs on port 5074
     - Browser launch disabled
     - Development environment
 
 - **HTTPS Profile**
-    - Primary port: 7041 (HTTPS)
-    - Secondary port: 5071 (HTTP)
+    - Primary port: 7266 (HTTPS)
+    - Secondary port: 5074 (HTTP)
     - Auto-launches browser
     - Opens Swagger UI automatically
     - Development environment
@@ -200,21 +204,21 @@ The configuration below specifies the development launch settings:
     "commandName": "Project",
     "dotnetRunMessages": true,
     "launchBrowser": false,
-    "applicationUrl": "http://localhost:5071"
+    "applicationUrl": "http://localhost:5074"
   },
   "https": {
     "commandName": "Project",
     "dotnetRunMessages": true,
     "launchBrowser": true,
     "launchUrl": "swagger",
-    "applicationUrl": "https://localhost:7041;http://localhost:5071"
+    "applicationUrl": "https://localhost:7266;http://localhost:5074"
   }
 }
 ```
 
 ## Project Structure
 ```
-AspNet.SwashbuckleDemo/
+AspNet.ReDocDemo/
 ├── 📁 Properties/
 │   └── ⚙️ launchSettings.json  # Launch settings file
 ├── 📄 Program.cs               # Application entry point and API configuration
@@ -223,7 +227,7 @@ AspNet.SwashbuckleDemo/
 ├── 📄 TodoItemDTO.cs           # Data Transfer Object for Todo
 ├── ⚙️ appsettings.json         # Application settings
 ├── ⚙️ appsettings.Development.json
-└── 📄 AspNet.SwashbuckleDemo.csproj
+└── 📄 AspNet.ReDocDemo.csproj
 ```
 
 ## Models
@@ -256,6 +260,5 @@ Contributions are welcome! Please fork the repository and submit a pull request.
 
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
-
 
 [Go to TOC](#table-of-contents)

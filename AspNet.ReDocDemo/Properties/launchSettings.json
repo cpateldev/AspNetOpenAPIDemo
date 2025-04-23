@@ -4,8 +4,9 @@
     "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": false,
-      "applicationUrl": "http://localhost:5205",
+      "launchBrowser": true, // Open browser when running the application
+      "launchUrl": "api-docs", // ReDoc URL to open in the browser
+      "applicationUrl": "http://localhost:5074",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -15,7 +16,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true, // Open browser when running the application
       "launchUrl": "api-docs", // ReDoc URL to open in the browser
-      "applicationUrl": "https://localhost:7266;http://localhost:5205",
+      "applicationUrl": "https://localhost:7266;http://localhost:5074",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

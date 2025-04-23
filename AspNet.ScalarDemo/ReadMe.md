@@ -1,6 +1,6 @@
-# ASP.NET Core Todo API with SwaggerUI Demo
+# ASP.NET Core Todo API with Scalar API Reference Demo
 
-A minimal API demo project showcasing Todo management with OpenAPI (Swagger) documentation using ASP.NET Core 9.0.
+A minimal API demo project showcasing Todo management with OpenAPI and scalar API doc.
 
 ## Table of Contents
 - [Platforms](#platforms)
@@ -11,12 +11,11 @@ A minimal API demo project showcasing Todo management with OpenAPI (Swagger) doc
   - [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](#microsoftaspnetcorediagnosticsentityframeworkcore)
   - [Microsoft.AspNetCore.OpenApi](#microsoftaspnetcoreopenapi)
   - [Microsoft.EntityFrameworkCore.InMemory](#microsoftentityframeworkcoreinmemory)
-  - [Swashbuckle.AspNetCore.SwaggerUI](#swashbuckleaspnetcoreswaggerui)
+  - [Scalar.AspNetCore](#scalaraspnetcore)
 - [Database Configuration](#database-configuration)
 - [API Endpoints](#api-endpoints)
 - [Launch Settings](#launch-settings)
-  - [HTTP Profile](#http-profile)
-  - [HTTPS Profile](#https-profile)
+  - [Development Server](#development-server)
 - [Project Structure](#project-structure)
 - [Model Definitions](#model-definitions)
   - [Todo Model](#todo-model)
@@ -32,28 +31,27 @@ A minimal API demo project showcasing Todo management with OpenAPI (Swagger) doc
 
 ## Overview
 
-This is a minimal API project built with ASP.NET Core 9.0 that demonstrates the implementation of a Todo API with SwaggerUI integration. The project showcases modern .NET features and REST API development practices.
+This is a minimal API project built with ASP.NET Core 9.0 that demonstrates the implementation of a Todo API using scalar types. The project showcases modern .NET features and REST API development practices with strong type safety.
 
 ### Key Features
 
 - Minimal API implementation
-- SwaggerUI integration for API documentation and testing
+- OpenAPI 3.0.1 integration
 - Entity Framework Core with In-Memory database
 - CRUD operations for Todo items
-- Batch operations support
+- Strongly typed scalar parameters
 - DTO pattern implementation
-- Tag-based categorization for Todo items
 
 ## Getting Started
 1. Clone the repository:
   ```bash
-  git clone https://github.com/your-repo/AspNet.SwaggerUIDemo.git
-  cd AspNet.SwaggerUIDemo
+  git clone https://github.com/your-repo/AspNet.ScalarDemo.git
+  cd AspNet.ScalarDemo
   ```
 
-2. Restore dependencies:
+2. Build the project:
   ```bash
-  dotnet restore
+  dotnet build
   ```
 
 3. Run the application:
@@ -62,11 +60,10 @@ This is a minimal API project built with ASP.NET Core 9.0 that demonstrates the 
   ```
 
 4. Access the API:
-  - Swagger UI: `http://localhost:5072/swagger` or `https://localhost:7096/swagger`
-  - API Endpoints: 
-    - HTTP: `http://localhost:5072/todoitems`
+  - Scalar API UI: `https://localhost:7096/scalar/v1` or `http://localhost:5072/scalar/v1`
+  - API Base URL: 
     - HTTPS: `https://localhost:7096/todoitems`
-
+    - HTTP: `http://localhost:5072/toitems`
 
 ## NuGet Package Configuration
 The following NuGet packages are required for this project:
@@ -92,22 +89,20 @@ dotnet add package Microsoft.AspNetCore.OpenApi --version 9.0.2
 dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 9.0.2
 ```
 
-### Swashbuckle.AspNetCore.SwaggerUI
-- Adds Swagger UI for API testing and exploration
-- Provides interactive documentation interface
+### Scalar.AspNetCore
+- Adds Scalar API Reference UI for modern API documentation
+- Provides interactive API documentation and testing interface
 ```powershell
-dotnet add package Swashbuckle.AspNetCore.SwaggerUI --version 7.2.0
+dotnet add package Scalar.AspNetCore --version 0.3.0
 ```
-
 ```xml
 <ItemGroup>
   <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.2" />
   <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
   <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.2" />
-  <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.2.0" />
+  <PackageReference Include="Scalar.AspNetCore" Version="0.3.0" />
 </ItemGroup>
 ```
-
 ## Database Configuration
 
 The project uses Entity Framework Core's In-Memory database provider for demonstration purposes. The database is pre-populated with sample Todo items on application startup.
@@ -127,36 +122,47 @@ The project uses Entity Framework Core's In-Memory database provider for demonst
 
 ## Launch Settings
 
-### HTTP Profile
-```json
-{
-  "applicationUrl": "http://localhost:5072",
-  "environmentVariables": {
-    "ASPNETCORE_ENVIRONMENT": "Development"
-  }
-}
-```
+The application can be run using the following endpoints:
 
-### HTTPS Profile
+### Development Server
+- HTTP: `http://localhost:5072`
+- HTTPS: `https://localhost:7096`
+
+The environment is configured via `launchSettings.json`:
+
 ```json
 {
-  "applicationUrl": "https://localhost:7096;http://localhost:5072",
-  "environmentVariables": {
-    "ASPNETCORE_ENVIRONMENT": "Development"
+  "profiles": {
+    "http": {
+      "applicationUrl": "http://localhost:5072",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "https": {
+      "applicationUrl": "https://localhost:7096;http://localhost:5072",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
   }
 }
 ```
 
 ## Project Structure
 
-📁 AspNet.SwaggerUIDemo/
-- 📄 `Program.cs` - Main application entry point and API routes
+📁 AspNet.ScalarDemo/
+- 📄 `Program.cs` - Main application entry point and API configuration
+- 📄 `Properties/`
+  - 📄 `launchSettings.json` - Launch profiles configuration
 - 📄 `Todo.cs` - Todo entity model with Tag support
 - 📄 `TodoItemDTO.cs` - Data Transfer Object for Todo items
-- 📄 `TodoDb.cs` - Database context configuration
+- 📄 `Tag.cs` - Tag model for todo items
+- 📄 `TodoDb.cs` - Database context and configurations
 - 📄 `appsettings.json` - Application configuration
-- 📄 `appsettings.Development.json` - Development configuration
-- 📄 `Properties/launchSettings.json` - Launch profiles configuration
+- 📄 `appsettings.Development.json` - Development environment settings
+- 📄 `AspNet.ScalarDemo.csproj` - Project file with package references
+- 📄 `ReadMe.md` - Project documentation
 
 ## Model Definitions
 
@@ -183,8 +189,6 @@ public class TodoItemDTO
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request.
-
----
 
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.

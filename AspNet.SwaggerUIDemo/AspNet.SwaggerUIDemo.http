@@ -1,6 +1,57 @@
-@AspNet.SwaggerUIDemo_HostAddress = http://localhost:5023
+@baseUrl = http://localhost:5072
 
-GET {{AspNet.SwaggerUIDemo_HostAddress}}/weatherforecast/
+### Get all todo items
+GET {{baseUrl}}/todoitems
 Accept: application/json
 
-###
+### Get completed todo items
+GET {{baseUrl}}/todoitems/complete
+Accept: application/json
+
+### Get todo item by id
+GET {{baseUrl}}/todoitems/1
+Accept: application/json
+
+### Create new todo item
+POST {{baseUrl}}/todoitems
+Content-Type: application/json
+
+{
+    "name": "Learn ASP.NET Core",
+    "isComplete": false
+}
+
+### Update todo item (PATCH)
+PATCH {{baseUrl}}/todoitems/1
+Content-Type: application/json
+
+{
+    "name": "Updated task name"
+}
+
+### Update todo item (PUT)
+PUT {{baseUrl}}/todoitems/1
+Content-Type: application/json
+
+{
+    "name": "Updated task name",
+    "isComplete": true
+}
+
+### Create multiple todo items
+POST {{baseUrl}}/todoitems/batch
+Content-Type: application/json
+
+[
+    {
+        "name": "Task 1",
+        "isComplete": false
+    },
+    {
+        "name": "Task 2", 
+        "isComplete": true
+    }
+]
+
+### Delete todo item
+DELETE {{baseUrl}}/todoitems/1

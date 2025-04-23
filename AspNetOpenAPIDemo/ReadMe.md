@@ -1,13 +1,34 @@
-# AspNetOpenAPIDemo
+# Asp.Net Open API Demo
 
-![Framework](https://img.shields.io/badge/Framework-.NET%209.0-purple?style=for-the-badge) 
-![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-blue?style=for-the-badge)  
+## Table of Contents
+- [Overview](#overview)
+- [Platforms](#platforms)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [NuGet Package Configuration](#nuget-package-configuration)
+    - [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](#microsoftaspnetcorediagnosticsentityframeworkcore-902)
+    - [Microsoft.AspNetCore.OpenApi](#microsoftaspnetcoreopenapi-902)
+    - [Microsoft.EntityFrameworkCore.InMemory](#microsoftentityframeworkcoreinmemory-902)
+    - [Swashbuckle.AspNetCore](#swashbuckleaspnetcore-720)
+- [Database](#database)
+- [Minimal API Endpoints](#minimal-api-endpoints)
+- [OpenAPI Documentation](#openapi-documentation)
+    - [Todo API](#todo-api)
+- [Launch Settings](#launch-settings)
+    - [Launch Profiles](#launch-profiles)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Overview
 
 A minimal API demo project showcasing Todo management with OpenAPI documentation using ASP.NET Core 9.0.
 
----
+## Platforms
+
+![Framework](https://img.shields.io/badge/Framework-.NET%209.0-purple?style=for-the-badge) 
+![Platform](https://img.shields.io/badge/Platforms-Windows%20%7C%20Linux%20%7C%20mac%20OS-blue?style=for-the-badge)
+![OpenAPI](https://img.shields.io/badge/OpenAPI-3.0.1-darkgreen?style=for-the-badge)  
+
 ## Features
 
 - Minimal API architecture
@@ -17,54 +38,57 @@ A minimal API demo project showcasing Todo management with OpenAPI documentation
 - Batch operations support
 - DTO pattern implementation
 
+## Getting Started
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-repo/AspNetOpenAPIDemo.git
+    cd AspNetOpenAPIDemo
+    ```
+
+2. Restore dependencies:
+    ```bash
+    dotnet restore
+    ```
+
+3. Run the application:
+    ```bash
+    dotnet run
+    ```
+
+4. Access Swagger UI at `http://localhost:5064/swagger` or `https://localhost:7041/swagger`
+5. Access Web API at `http://localhost:5064/todoitems` or `https://localhost:7041/todoitems`
 ---
 
-## NuGet Package Dependencies
-The project uses the following NuGet packages:
+## NuGet Package Configuration
+The following NuGet packages are required for this project:
 
-1. **Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore**  
-    Provides middleware for Entity Framework Core error pages.  
-    ```bash
-    dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-    ```
-
-2. **Microsoft.AspNetCore.OpenApi**  
-    Provides API support for OpenAPI (Swagger) functionality in ASP.NET Core.  
-    ```bash
-    dotnet add package Microsoft.AspNetCore.OpenApi
-    ```
-
-3. **Microsoft.EntityFrameworkCore.InMemory**  
-    Provides in-memory database provider for Entity Framework Core.  
-    ```bash
-    dotnet add package Microsoft.EntityFrameworkCore.InMemory
-    ```
-
----
-
-## Project Structure
-Below is the structure of the project:
-
+### Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore (9.0.2)
+- Provides middleware for Entity Framework Core error pages
+- Enables detailed database error information during development
+```powershell
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --version 9.0.2
 ```
-AspNetOpenAPIDemo/ 📁
-├── Properties/ 📁
-│   └── launchSettings.json ⚙️
-├── bin/ 📁
-├── obj/ 📁
-├── appsettings.Development.json ⚙️
-├── appsettings.json ⚙️
-├── AspNetOpenAPIDemo.csproj 📄
-├── AspNetOpenAPIDemo.csproj.user 📄
-├── AspNetOpenAPIDemo.http 📄
-├── AspNetOpenAPIDemo.sln 📄
-├── Program.cs 📄
-├── ReadMe.md 📄
-├── ToDo.cs 📄
-├── ToDoDb.cs 📄
-└── TodoItemDTO.cs 📄
-```
----
 
+### Microsoft.AspNetCore.OpenApi (9.0.2)
+- Enables OpenAPI description for ASP.NET Core APIs
+- Required for Swagger documentation generation
+```powershell
+dotnet add package Microsoft.AspNetCore.OpenApi --version 9.0.2
+```
+
+### Microsoft.EntityFrameworkCore.InMemory (9.0.2)
+- Provides in-memory database provider for Entity Framework Core
+- Useful for testing and development scenarios
+```powershell
+dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 9.0.2
+```
+```xml
+<ItemGroup>
+  <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.2" />
+  <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.2" />
+</ItemGroup>
+```
 
 ## Database
 
@@ -74,18 +98,19 @@ The application uses Entity Framework Core with an InMemory database provider, p
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `api/todoitems` | Get all todo items |
-| GET | `api/todoitems/complete` | Get completed todo items |
-| GET | `api/todoitems/{id}` | Get a specific todo item |
-| POST | `api/todoitems` | Create a new todo item |
-| PUT | `api/todoitems/{id}` | Update an existing todo item |
-| PATCH | `api/todoitems/{id}` | Partially update a todo item |
-| DELETE | `api/todoitems/{id}` | Delete a todo item |
-| POST | `api/todoitems/batch` | Create multiple todo items |
-
+| GET | `/todoitems` | Get all todo items |
+| GET | `/todoitems/complete` | Get completed todo items |
+| GET | `/todoitems/{id}` | Get a specific todo item |
+| POST | `/todoitems` | Create a new todo item |
+| PUT | `/todoitems/{id}` | Update an existing todo item |
+| PATCH | `/todoitems/{id}` | Partially update a todo item |
+| DELETE | `/todoitems/{id}` | Delete a todo item |
+| POST | `/todoitems/batch` | Create multiple todo items |
 
 ## OpenAPI Documentation
-The project uses OpenAPI (Swagger) to document and test its APIs. Swagger UI is automatically generated and available at `http://localhost:<port>/swagger`. The following endpoints are documented:
+The project uses OpenAPI (Swagger) to document and test its APIs. Swagger UI is automatically generated and available at `http://localhost:<port>/swagger`. 
+
+The following endpoints are documented:
 
 ### Todo API
 - **GET /api/todo**  
@@ -129,49 +154,52 @@ The project uses OpenAPI (Swagger) to document and test its APIs. Swagger UI is 
     **Response:** 204 (No Content)  
     **Error:** 404 (Not Found), 500 (Internal Server Error)
 
----
-
 ## Launch Settings
-The application can be launched in two modes:
 
-### HTTP Profile
-- Runs on http://localhost:5173
-- Browser launch disabled by default
-- Development environment
+Development environment settings:
+The `launchSettings.json` file in the `Properties` folder configures how the application launches in different environments. This configuration includes:
 
-### HTTPS Profile
-- Runs on https://localhost:7013 and http://localhost:5173
-- Automatically opens browser on launch
-- Opens the OpenAPI specification (openapi/v1.json) by default
-- Development environment
+### Launch Profiles
+The file contains two primary launch profiles:
 
----
+- **HTTP Profile**
+    - Runs on port 5070
+    - Browser launch disabled
+    - Development environment
 
-## Getting Started
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-repo/AspNetOpenAPIDemo.git
-    cd AspNetOpenAPIDemo
-    ```
+- **HTTPS Profile**
+    - Primary port: 7013 (HTTPS)
+    - Secondary port: 5070 (HTTP)
+    - Auto-launches browser
+    - Opens Swagger UI automatically
+    - Development environment
 
-2. Restore dependencies:
-    ```bash
-    dotnet restore
-    ```
+These settings control the application's startup behavior and can be modified to suit different development needs.
 
-3. Run the application:
-    ```bash
-    dotnet run
-    ```
+The configuration below specifies the development launch settings:
 
-4. Access Swagger UI at `http://localhost:<port>/openapi/v1.json`
-5. Access web api at `https://localhost:<port>/api/todoitems`
----
+```json
+{
+  "http": {
+    "commandName": "Project",
+    "dotnetRunMessages": true,
+    "launchBrowser": false,
+    "applicationUrl": "http://localhost:5070"
+  },
+  "https": {
+    "commandName": "Project",
+    "dotnetRunMessages": true,
+    "launchBrowser": true,
+    "launchUrl": "swagger",
+    "applicationUrl": "https://localhost:7013;http://localhost:5070"
+  }
+}
+```
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request.
 
----
-
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+[Go to TOC](#table-of-contents)
