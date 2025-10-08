@@ -1,4 +1,4 @@
-# Asp.Net Open API Demo
+﻿# Asp.Net Open API Demo
 
 ## Table of Contents
 - [Overview](#overview)
@@ -26,7 +26,7 @@ A minimal API demo project showcasing Todo management with OpenAPI documentation
 ## Platforms
 
 ![Framework](https://img.shields.io/badge/Framework-.NET%209.0-purple?style=for-the-badge) 
-![Platform](https://img.shields.io/badge/Platforms-Windows%20%7C%20Linux%20%7C%20mac%20OS-blue?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platforms-⊞%20Windows%20%7C%20🐧Linux%20%7C%20🍎Mac%20OS-blue?style=for-the-badge)
 ![OpenAPI](https://img.shields.io/badge/OpenAPI-3.0.1-darkgreen?style=for-the-badge)  
 
 ## Features
